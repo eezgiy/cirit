@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROKETSAN // ANALİZ AKIŞI</title>
+  <meta name="description" content="Referans veri + görsel yükleme adımlarından geçip GLM-5.3 LLM tehdit değerlendirme sonuçlarını gören adım adım akış.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/tactical.css">
+  <link rel="stylesheet" href="css/flow.css">
+</head>
+<body>
+
+  <!-- TOP COMMAND HEADER -->
+  <header class="command-header">
+    <div class="brand-section">
+      <div class="brand-badge">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71zM12 4.8l4.47 11.23-4.47-1.97-4.47 1.97z"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <h1>ROKETSAN <span>//</span> ANALİZ AKIŞI</h1>
+        <div class="subtext">ADIM ADIM: REFERANS VERİ &rarr; GÖRSEL &rarr; GLM-5.3 İSTİHBARAT SONUCU</div>
+      </div>
+    </div>
+
+    <div class="header-status-group">
+      <div class="service-pill" title="ASP.NET Core REST & Tool API (Port 5299)">
+        <span class="status-dot" id="dotBackend"></span>
+        <span>BACKEND: 5299</span>
+      </div>
+      <div class="service-pill" title="YOLOv11 Stage-1 Nesne Tespiti (Port 8002)">
+        <span class="status-dot" id="dotDetection"></span>
+        <span>YOLO: 8002</span>
+      </div>
+      <div class="service-pill" title="GLM-5.3-Flash Karar ve İstihbarat Ajanı (Port 8001)">
+        <span class="status-dot" id="dotAgent"></span>
+        <span>LLM AGENT: 8001</span>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <a href="dashboard.html" class="btn-tactical-outline" title="Taktik Komuta Merkezine Git">TAKTİK KOMUTA MERKEZİ</a>
+    </div>
+  </header>
+
+  <main class="flow-main">
+
+    <!-- STEP INDICATOR BAR -->
+    <div class="flow-stepper" id="flowStepper">
+      <div class="flow-step-indicator" data-step="1">
+        <span class="fsi-num">1</span>
+        <span class="fsi-label">Başlat</span>
+      </div>
+      <div class="flow-step-connector"></div>
+      <div class="flow-step-indicator" data-step="2">
+        <span class="fsi-num">2</span>
+        <span class="fsi-label">Referans Veri</span>
+      </div>
+      <div class="flow-step-connector"></div>
+      <div class="flow-step-indicator" data-step="3">
+        <span class="fsi-num">3</span>
+        <span class="fsi-label">Görseller</span>
+      </div>
+      <div class="flow-step-connector"></div>
+      <div class="flow-step-indicator" data-step="4">
+        <span class="fsi-num">4</span>
+        <span class="fsi-label">Sonuçlar</span>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- STEP 1: START -->
+    <!-- ============================================================ -->
+    <section class="glass-panel flow-panel" id="panelStep1">
+      <div class="panel-header">
+        <div class="panel-title">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <span>Adım 1 &middot; Analiz Akışını Başlat</span>
+        </div>
+      </div>
+      <div class="panel-body">
+        <p class="flow-desc">
+          Bu akış dört adımdan oluşur: önce sistem servislerinin ayakta olduğunu doğrularsınız,
+          ardından referans verilerini (bölgeler, rotalar, kare metadata'sı, saha raporları)
+          yüklersiniz, sonra İHA görsellerini yükleyip otomatik tespit/track eşlemesini
+          tetiklersiniz ve son olarak GLM-5.3 LLM İstihbarat Ajanı'nın ürettiği tehdit
+          değerlendirme sonuçlarını görürsünüz.
+        </p>
+        <div class="flow-info-alert">
+          💡 Sistem hiçbir veriyi kendiliğinden okumaz — her adımda yüklediğiniz dosyalar
+          dışında bir veri kaynağı yoktur.
+        </div>
+
+        <div class="section-label"><span>Servis Durumu</span></div>
+        <div class="flow-health-row" id="flowHealthRow">
+          <div class="flow-health-pill" id="healthBackend"><span class="fh-dot"></span>Backend</div>
+          <div class="flow-health-pill" id="healthDetection"><span class="fh-dot"></span>Detection (YOLO)</div>
+          <div class="flow-health-pill" id="healthAgent"><span class="fh-dot"></span>LLM Agent</div>
+        </div>
+
+        <div class="flow-actions">
+          <button class="btn-tactical-primary" id="btnStartFlow">Akışı Başlat &rarr;</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- STEP 2: REFERENCE DATA UPLOAD -->
+    <!-- ============================================================ -->
+    <section class="glass-panel flow-panel hidden" id="panelStep2">
+      <div class="panel-header">
+        <div class="panel-title">
+          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14h-2v-4H8l4-4 4 4h-2v4z"/></svg>
+          <span>Adım 2 &middot; Referans Verilerini Yükle</span>
+        </div>
+      </div>
+      <div class="panel-body">
+        <p class="flow-desc">
+          Aşağıdaki dört dosya sistemin referans verisini oluşturur. Her biri kendi
+          <code>/api/reference-data/*</code> uç noktasına yüklenir ve veritabanına işlenir
+          (aynı dosyayı tekrar yüklemek güvenlidir, veriler anahtara göre güncellenir).
+        </p>
+
+        <div class="refdata-grid" id="refdataGrid">
+          <div class="refdata-card" data-key="zones">
+            <div class="refdata-card-title">Bölgeler <span class="refdata-file">zones.json</span></div>
+            <div class="refdata-card-hint">Üs konumu ve taktik bölgelerin (WayPoint) koordinatları.</div>
+            <input type="file" class="refdata-input" accept=".json,application/json">
+            <button class="btn-tactical-outline refdata-upload-btn">Yükle</button>
+            <div class="refdata-status">Bekleniyor</div>
+          </div>
+
+          <div class="refdata-card" data-key="tracks">
+            <div class="refdata-card-title">Rotalar <span class="refdata-file">tracks.csv</span></div>
+            <div class="refdata-card-hint">track_id, time, lat, lon sütunlarını içeren hareket kayıtları.</div>
+            <input type="file" class="refdata-input" accept=".csv,text/csv">
+            <button class="btn-tactical-outline refdata-upload-btn">Yükle</button>
+            <div class="refdata-status">Bekleniyor</div>
+          </div>
+
+          <div class="refdata-card" data-key="imageMeta">
+            <div class="refdata-card-title">Kare Metadata <span class="refdata-file">image_meta.json</span></div>
+            <div class="refdata-card-hint">Her İHA karesinin genişlik/yükseklik, saat ve köşe koordinatları (WGS84).</div>
+            <input type="file" class="refdata-input" accept=".json,application/json">
+            <button class="btn-tactical-outline refdata-upload-btn">Yükle</button>
+            <div class="refdata-status">Bekleniyor</div>
+          </div>
+
+          <div class="refdata-card" data-key="fieldReports">
+            <div class="refdata-card-title">Saha Raporları <span class="refdata-file">field_reports.json</span></div>
+            <div class="refdata-card-hint">Zaman/konum içeren serbest metin istihbarat raporları.</div>
+            <input type="file" class="refdata-input" accept=".json,application/json">
+            <button class="btn-tactical-outline refdata-upload-btn">Yükle</button>
+            <div class="refdata-status">Bekleniyor</div>
+          </div>
+        </div>
+
+        <div class="flow-actions">
+          <button class="btn-tactical-outline flow-back-btn" data-goto="1">&larr; Geri</button>
+          <button class="btn-tactical-primary" id="btnStep2Next" disabled>İleri: Görselleri Yükle &rarr;</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- STEP 3: IMAGE UPLOAD -->
+    <!-- ============================================================ -->
+    <section class="glass-panel flow-panel hidden" id="panelStep3">
+      <div class="panel-header">
+        <div class="panel-title">
+          <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+          <span>Adım 3 &middot; Görselleri Yükle</span>
+        </div>
+      </div>
+      <div class="panel-body">
+        <p class="flow-desc">
+          Tek veya birden fazla İHA karesi seçin/sürükleyin. Her görsel sırayla sunucuya
+          gönderilir; YOLO tespiti, WGS84 dönüşümü, track eşlemesi ve LLM değerlendirme
+          isteği otomatik olarak tetiklenir.
+        </p>
+
+        <div class="drop-zone" id="flowDropZone">
+          <input type="file" id="flowFileInput" accept="image/*" multiple style="display:none;">
+          <div class="drop-zone-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+          </div>
+          <div class="drop-zone-text">Tek veya Birden Fazla İHA Karesi Yükleyin / Sürükleyin</div>
+          <div class="drop-zone-sub">JPEG, PNG, WEBP (çoklu seçim desteklenir)</div>
+        </div>
+
+        <div class="section-label">
+          <span>Yüklenen Görseller</span>
+          <span id="flowImageCount">0</span>
+        </div>
+        <div class="flow-image-list" id="flowImageList">
+          <div class="flow-empty-note">Henüz görsel yüklenmedi.</div>
+        </div>
+
+        <div class="flow-actions">
+          <button class="btn-tactical-outline flow-back-btn" data-goto="2">&larr; Geri</button>
+          <button class="btn-tactical-primary" id="btnStep3Next" disabled>İleri: Sonuçları Gör &rarr;</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- STEP 4: LLM RESULTS -->
+    <!-- ============================================================ -->
+    <section class="glass-panel flow-panel hidden" id="panelStep4">
+      <div class="panel-header">
+        <div class="panel-title">
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+          <span>Adım 4 &middot; GLM-5.3 İstihbarat Değerlendirme Sonuçları</span>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="flow-desc" id="resultsSummary">Sonuçlar yükleniyor...</div>
+
+        <div class="flow-results-grid" id="resultsGrid"></div>
+
+        <div class="flow-actions">
+          <button class="btn-tactical-outline flow-back-btn" data-goto="3">&larr; Görsel Ekle</button>
+          <button class="btn-tactical-outline" id="btnRefreshResults">&#128260; Sonuçları Yenile</button>
+          <button class="btn-tactical-primary" id="btnResetFlow">&#8635; Yeni Analiz Başlat</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/flow.js"></script>
+</body>
+</html>

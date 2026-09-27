@@ -1,0 +1,391 @@
+/* ============================================================
+   FLOW WIZARD - step-by-step analysis flow page
+   Reuses tokens/components from tactical.css (glass-panel, drop-zone,
+   verdict-banner, toast, btn-tactical-*) - only wizard-specific layout
+   lives here.
+   ============================================================ */
+
+.flow-main {
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* STEP INDICATOR BAR */
+.flow-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 4px 0 6px;
+}
+
+.flow-step-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.5;
+  transition: opacity 0.25s ease;
+}
+
+.flow-step-indicator.active,
+.flow-step-indicator.done {
+  opacity: 1;
+}
+
+.fsi-num {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-hud);
+  font-weight: 700;
+  font-size: 0.85rem;
+  border: 1px solid var(--border-color);
+  background: rgba(15, 23, 42, 0.85);
+  color: var(--text-muted);
+}
+
+.flow-step-indicator.active .fsi-num {
+  border-color: var(--cyan-glow);
+  color: var(--cyan-glow);
+  box-shadow: 0 0 14px rgba(0, 229, 255, 0.4);
+}
+
+.flow-step-indicator.done .fsi-num {
+  border-color: var(--safe);
+  color: var(--safe);
+  background: rgba(16, 185, 129, 0.12);
+}
+
+.fsi-label {
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.flow-step-indicator.active .fsi-label,
+.flow-step-indicator.done .fsi-label {
+  color: var(--text-main);
+}
+
+.flow-step-connector {
+  width: 40px;
+  height: 1px;
+  background: var(--border-color);
+  margin-bottom: 18px;
+}
+
+/* PANELS */
+.flow-panel.hidden {
+  display: none;
+}
+
+.flow-desc {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.flow-desc code {
+  font-family: var(--font-mono);
+  color: var(--cyan-glow);
+  background: rgba(0, 229, 255, 0.08);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.78rem;
+}
+
+.flow-info-alert {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  background: rgba(56, 189, 248, 0.06);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.flow-empty-note {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-align: center;
+  padding: 14px;
+}
+
+/* SERVICE HEALTH ROW (step 1) */
+.flow-health-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.flow-health-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 6px 12px;
+}
+
+.fh-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-dim);
+  box-shadow: none;
+  flex-shrink: 0;
+}
+
+.flow-health-pill.online .fh-dot {
+  background: var(--safe);
+  box-shadow: 0 0 8px var(--safe-glow);
+}
+
+.flow-health-pill.offline .fh-dot {
+  background: var(--danger);
+  box-shadow: 0 0 8px var(--danger-glow);
+}
+
+/* ACTIONS ROW */
+.flow-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border-color);
+  margin-top: 4px;
+}
+
+.flow-actions .flow-back-btn {
+  margin-right: auto;
+}
+
+.btn-tactical-primary:disabled,
+.btn-tactical-outline:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* STEP 2: REFERENCE DATA CARDS */
+.refdata-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 700px) {
+  .refdata-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.refdata-card {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.refdata-card.done {
+  border-color: var(--safe);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.12);
+}
+
+.refdata-card.error {
+  border-color: var(--danger);
+}
+
+.refdata-card-title {
+  font-family: var(--font-hud);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-main);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.refdata-file {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--cyan-glow);
+  font-weight: 400;
+}
+
+.refdata-card-hint {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+
+.refdata-input {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.refdata-status {
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  color: var(--text-dim);
+}
+
+.refdata-card.done .refdata-status {
+  color: var(--safe);
+}
+
+.refdata-card.error .refdata-status {
+  color: var(--danger);
+}
+
+/* STEP 3: IMAGE UPLOAD LIST */
+.flow-image-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.flow-image-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.75rem;
+}
+
+.flow-image-row .fir-name {
+  flex: 1;
+  font-family: var(--font-mono);
+  color: var(--text-main);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.flow-image-row .fir-detail {
+  color: var(--text-dim);
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+
+.flow-image-row .fir-status {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.flow-image-row.pending .fir-status { color: var(--warning); }
+.flow-image-row.done .fir-status { color: var(--safe); }
+.flow-image-row.failed .fir-status { color: var(--danger); }
+
+/* STEP 4: RESULTS GRID */
+.flow-results-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.result-card {
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 14px;
+  background: rgba(15, 23, 42, 0.6);
+}
+
+.result-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.result-track-id {
+  font-family: var(--font-hud);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.result-verdict-badge {
+  font-family: var(--font-hud);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.result-verdict-badge.safe {
+  color: var(--safe);
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.result-verdict-badge.suspicious {
+  color: var(--warning);
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.result-verdict-badge.unsafe {
+  color: var(--danger);
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.result-verdict-badge.pending {
+  color: var(--text-dim);
+  background: rgba(100, 116, 139, 0.12);
+  border: 1px solid var(--border-color);
+}
+
+.result-meta {
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+
+.result-reasoning {
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: #cbd5e1;
+  margin-bottom: 8px;
+}
+
+.result-evidence-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.result-evidence-tag {
+  background: rgba(0, 229, 255, 0.12);
+  color: var(--cyan-glow);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+}

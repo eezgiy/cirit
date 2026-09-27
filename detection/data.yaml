@@ -1,0 +1,11 @@
+path: /home/gemini/projects/hackathon
+train: train/images
+val: train/images
+test: test/images
+
+nc: 4
+names:
+  0: bus
+  1: car
+  2: truck
+  3: van

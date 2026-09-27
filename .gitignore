@@ -1,0 +1,64 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+
+# =========================
+# Jupyter / Kaggle
+# =========================
+.ipynb_checkpoints/
+
+# .ipynb dosyalarını IGNORE ETMİYORUZ
+# Kaggle notebook GitHub'a gidecek
+
+# =========================
+# .NET / Visual Studio
+# =========================
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# =========================
+# VS Code
+# =========================
+.vscode/
+
+# =========================
+# macOS
+# =========================
+.DS_Store
+
+# =========================
+# Logs / temporary
+# =========================
+*.log
+*.tmp
+*.temp
+
+# =========================
+# Secrets
+# =========================
+.env
+.env.*
+secrets.json
+
+# =========================
+# ML outputs
+# =========================
+runs/
+outputs/
+
+# NOT:
+# best-4.pt GitHub'a eklenecek.
+# Bu nedenle *.pt YAZMIYORUZ.
